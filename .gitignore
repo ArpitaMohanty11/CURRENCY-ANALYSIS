@@ -16,7 +16,8 @@ venv/
 *.egg-info/
 .eggs/
 
-# Environment files with secrets
+# Environment files with secrets (NEVER push these)
+.env
 backend/.env
 frontend/.env
 

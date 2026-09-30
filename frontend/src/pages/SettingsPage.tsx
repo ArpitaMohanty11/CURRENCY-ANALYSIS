@@ -68,7 +68,7 @@ export const SettingsPage: React.FC = () => {
         {/* Profile Card */}
         <div className="lg:col-span-4 glass-panel p-5 rounded-2xl border border-[#1c2a47]">
           <div className="flex items-center gap-3 pb-4 border-b border-[#1c2a47] mb-4">
-            <div className="w-12 h-12 rounded-xl bg-gradient-to-tr from-cyan-600 to-blue-600 flex items-center justify-center font-bold text-white text-lg font-mono">
+            <div className="w-12 h-12 rounded-xl bg-linear-to-tr from-cyan-600 to-blue-600 flex items-center justify-center font-bold text-white text-lg font-mono">
               {user?.full_name ? user.full_name[0] : 'T'}
             </div>
             <div>

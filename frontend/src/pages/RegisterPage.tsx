@@ -50,7 +50,7 @@ export const RegisterPage: React.FC = () => {
               required
               value={fullName}
               onChange={(e) => setFullName(e.target.value)}
-              className="w-full bg-[#070e1c] border border-[#1c2a47] rounded-xl pl-9 pr-4 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500 font-mono"
+              className="w-full bg-[#070e1c] border border-[#1c2a47] rounded-xl pl-9 pr-4 py-2.5 text-xs text-white placeholder:text-slate-500 focus:outline-none focus:border-cyan-500 font-mono"
               placeholder="e.g. Dharmendra Vance"
             />
           </div>
@@ -65,7 +65,7 @@ export const RegisterPage: React.FC = () => {
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full bg-[#070e1c] border border-[#1c2a47] rounded-xl pl-9 pr-4 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500 font-mono"
+              className="w-full bg-[#070e1c] border border-[#1c2a47] rounded-xl pl-9 pr-4 py-2.5 text-xs text-white placeholder:text-slate-500 focus:outline-none focus:border-cyan-500 font-mono"
               placeholder="trader@institution.com"
             />
           </div>
@@ -81,7 +81,7 @@ export const RegisterPage: React.FC = () => {
               minLength={6}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full bg-[#070e1c] border border-[#1c2a47] rounded-xl pl-9 pr-4 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500 font-mono"
+              className="w-full bg-[#070e1c] border border-[#1c2a47] rounded-xl pl-9 pr-4 py-2.5 text-xs text-white placeholder:text-slate-500 focus:outline-none focus:border-cyan-500 font-mono"
               placeholder="••••••••"
             />
           </div>
@@ -118,7 +118,7 @@ export const RegisterPage: React.FC = () => {
         <button
           type="submit"
           disabled={isLoading}
-          className="w-full mt-2 py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-black font-mono font-bold text-xs shadow-lg shadow-cyan-500/25 flex items-center justify-center gap-2 transition-all disabled:opacity-50"
+          className="w-full mt-2 py-3 rounded-xl bg-linear-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-black font-mono font-bold text-xs shadow-lg shadow-cyan-500/25 flex items-center justify-center gap-2 transition-all disabled:opacity-50"
         >
           {isLoading ? (
             <span>Creating Workspace...</span>

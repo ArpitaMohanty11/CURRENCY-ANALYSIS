@@ -54,7 +54,7 @@ export const Header: React.FC = () => {
       {/* Brand & Market Clocks */}
       <div className="flex items-center gap-6">
         <Link to="/dashboard" className="flex items-center gap-2.5 group">
-          <div className="w-9 h-9 rounded-lg bg-gradient-to-tr from-cyan-600 via-cyan-500 to-blue-600 flex items-center justify-center shadow-lg shadow-cyan-500/20 group-hover:scale-105 transition-transform">
+          <div className="w-9 h-9 rounded-lg bg-linear-to-tr from-cyan-600 via-cyan-500 to-blue-600 flex items-center justify-center shadow-lg shadow-cyan-500/20 group-hover:scale-105 transition-transform">
             <Activity className="w-5 h-5 text-white" />
           </div>
           <div>
@@ -105,7 +105,7 @@ export const Header: React.FC = () => {
               setSearchOpen(true);
             }}
             onFocus={() => setSearchOpen(true)}
-            className="w-full bg-[#0c1527] border border-[#1c2a47] rounded-lg pl-9 pr-12 py-1.5 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-cyan-500/70 focus:ring-1 focus:ring-cyan-500/30 transition-all font-mono"
+            className="w-full bg-[#0c1527] border border-[#1c2a47] rounded-lg pl-9 pr-12 py-1.5 text-xs text-slate-200 placeholder:text-slate-500 focus:outline-none focus:border-cyan-500/70 focus:ring-1 focus:ring-cyan-500/30 transition-all font-mono"
           />
           <kbd className="absolute right-2.5 top-1/2 -translate-y-1/2 text-[10px] font-mono text-slate-400 bg-[#16223b] px-1.5 py-0.5 rounded border border-[#203152]">
             /
@@ -163,7 +163,7 @@ export const Header: React.FC = () => {
             onClick={() => setUserDropdown(!userDropdown)}
             className="flex items-center gap-2.5 p-1.5 pr-2.5 rounded-lg bg-[#0c1527] border border-[#1c2a47] hover:border-slate-600 transition-all text-left"
           >
-            <div className="w-7 h-7 rounded bg-gradient-to-br from-indigo-500 to-cyan-500 flex items-center justify-center font-bold text-white text-xs">
+            <div className="w-7 h-7 rounded bg-linear-to-br from-indigo-500 to-cyan-500 flex items-center justify-center font-bold text-white text-xs">
               {user?.full_name ? user.full_name[0] : 'T'}
             </div>
             <div className="hidden md:block">

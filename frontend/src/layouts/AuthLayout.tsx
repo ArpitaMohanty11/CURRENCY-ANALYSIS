@@ -13,7 +13,7 @@ export const AuthLayout: React.FC = () => {
       {/* Top Brand Link */}
       <div className="relative z-10 mb-8 text-center">
         <Link to="/" className="inline-flex items-center gap-3 group">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-600 via-cyan-500 to-blue-600 flex items-center justify-center shadow-lg shadow-cyan-500/25 group-hover:scale-105 transition-transform">
+          <div className="w-10 h-10 rounded-xl bg-linear-to-tr from-cyan-600 via-cyan-500 to-blue-600 flex items-center justify-center shadow-lg shadow-cyan-500/25 group-hover:scale-105 transition-transform">
             <Activity className="w-6 h-6 text-white" />
           </div>
           <span className="font-extrabold text-2xl tracking-tight text-white font-mono">

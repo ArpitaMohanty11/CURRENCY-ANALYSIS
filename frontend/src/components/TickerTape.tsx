@@ -21,13 +21,13 @@ export const TickerTape: React.FC = () => {
 
   return (
     <div className="w-full bg-[#050b17] border-b border-[#1c2a47] py-2 overflow-hidden relative select-none">
-      <div className="absolute left-0 top-0 bottom-0 z-10 w-28 bg-gradient-to-r from-[#050b17] via-[#050b17]/80 to-transparent pointer-events-none flex items-center pl-3">
+      <div className="absolute left-0 top-0 bottom-0 z-10 w-28 bg-linear-to-r from-[#050b17] via-[#050b17]/80 to-transparent pointer-events-none flex items-center pl-3">
         <span className="flex items-center gap-1.5 text-[10px] font-mono tracking-wider font-semibold text-cyan-400 bg-cyan-950/60 px-2 py-0.5 rounded border border-cyan-800/60">
           <Radio className="w-2.5 h-2.5 animate-pulse text-cyan-400" />
           FEED
         </span>
       </div>
-      <div className="absolute right-0 top-0 bottom-0 z-10 w-16 bg-gradient-to-l from-[#050b17] to-transparent pointer-events-none" />
+      <div className="absolute right-0 top-0 bottom-0 z-10 w-16 bg-linear-to-l from-[#050b17] to-transparent pointer-events-none" />
 
       <div className="ticker-scroll flex items-center gap-6 text-xs whitespace-nowrap pl-28">
         {looped.map((r, idx) => {

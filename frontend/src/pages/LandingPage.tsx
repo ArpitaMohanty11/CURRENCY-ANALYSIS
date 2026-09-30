@@ -40,7 +40,7 @@ export const LandingPage: React.FC = () => {
       {/* Top Navbar */}
       <nav className="h-20 border-b border-[#1c2a47] px-6 lg:px-12 flex items-center justify-between sticky top-0 bg-[#070e1c]/90 backdrop-blur-md z-40">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-600 via-cyan-500 to-blue-600 flex items-center justify-center shadow-lg shadow-cyan-500/25">
+          <div className="w-10 h-10 rounded-xl bg-linear-to-tr from-cyan-600 via-cyan-500 to-blue-600 flex items-center justify-center shadow-lg shadow-cyan-500/25">
             <Activity className="w-6 h-6 text-white" />
           </div>
           <div>
@@ -85,7 +85,7 @@ export const LandingPage: React.FC = () => {
         </div>
 
         <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white max-w-5xl leading-tight">
-          Next-Generation <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-teal-300 to-blue-500">Foreign Exchange</span> Intelligence
+          Next-Generation <span className="text-transparent bg-clip-text bg-linear-to-r from-cyan-400 via-teal-300 to-blue-500">Foreign Exchange</span> Intelligence
         </h1>
 
         <p className="mt-6 text-base sm:text-lg text-slate-400 max-w-2xl font-normal leading-relaxed">
@@ -95,7 +95,7 @@ export const LandingPage: React.FC = () => {
         <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
           <Link
             to="/dashboard"
-            className="flex items-center gap-2 px-6 py-3.5 rounded-xl font-mono text-sm font-bold bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-black shadow-xl shadow-cyan-500/25 transition-all transform hover:-translate-y-0.5"
+            className="flex items-center gap-2 px-6 py-3.5 rounded-xl font-mono text-sm font-bold bg-linear-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-black shadow-xl shadow-cyan-500/25 transition-all transform hover:-translate-y-0.5"
           >
             <span>EXPLORE PRO TERMINAL</span>
             <ArrowRight className="w-4 h-4" />

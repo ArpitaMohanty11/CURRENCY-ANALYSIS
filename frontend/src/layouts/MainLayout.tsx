@@ -19,7 +19,7 @@ export const MainLayout: React.FC = () => {
       <TickerTape />
       <div className="flex-1 flex overflow-hidden">
         <Sidebar />
-        <main className="flex-1 overflow-y-auto p-4 lg:p-6 bg-gradient-to-b from-[#070e1c] via-[#081020] to-[#070e1c]">
+        <main className="flex-1 overflow-y-auto p-4 lg:p-6 bg-linear-to-b from-[#070e1c] via-[#081020] to-[#070e1c]">
           <Outlet />
         </main>
       </div>
