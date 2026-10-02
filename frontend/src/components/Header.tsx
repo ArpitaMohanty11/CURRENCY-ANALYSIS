@@ -60,10 +60,7 @@ export const Header: React.FC = () => {
           <div>
             <div className="flex items-center gap-2">
               <span className="font-extrabold text-lg tracking-tight text-white font-mono">
-                Currency<span className="text-cyan-400">Lens</span>
-              </span>
-              <span className="text-[10px] font-mono font-bold tracking-widest uppercase bg-cyan-950/80 text-cyan-300 border border-cyan-800/80 px-1.5 py-0.5 rounded">
-                PRO
+                Currency <span className="text-cyan-400">Analysis</span>
               </span>
             </div>
             <div className="text-[10px] text-slate-400 font-mono tracking-wider -mt-0.5">

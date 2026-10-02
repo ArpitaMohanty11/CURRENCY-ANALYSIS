@@ -9,7 +9,7 @@ security = HTTPBearer(auto_error=False)
 async def get_current_user(credentials: Optional[HTTPAuthorizationCredentials] = Depends(security)) -> Dict[str, Any]:
     if not credentials:
         # Default fallback to trader for smooth zero-config demo experience
-        user = user_repo.get_by_email("trader@currencylens.com")
+        user = user_repo.get_by_email("trader@currencyanalysis.com")
         if user:
             return user
         raise HTTPException(
@@ -21,11 +21,11 @@ async def get_current_user(credentials: Optional[HTTPAuthorizationCredentials] =
     token = credentials.credentials
     # Handle demo shorthand tokens
     if token == "demo-admin-token":
-        admin = user_repo.get_by_email("admin@currencylens.com")
+        admin = user_repo.get_by_email("admin@currencyanalysis.com")
         if admin:
             return admin
     elif token == "demo-trader-token":
-        trader = user_repo.get_by_email("trader@currencylens.com")
+        trader = user_repo.get_by_email("trader@currencyanalysis.com")
         if trader:
             return trader
 

@@ -7,7 +7,7 @@ export const LoginPage: React.FC = () => {
   const navigate = useNavigate();
   const { login, isLoading, error } = useAuthStore();
 
-  const [email, setEmail] = useState('trader@currencylens.com');
+  const [email, setEmail] = useState('trader@currencyanalysis.com');
   const [password, setPassword] = useState('trader123');
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -20,8 +20,8 @@ export const LoginPage: React.FC = () => {
 
   const handleQuickLogin = async (role: 'trader' | 'admin') => {
     const creds = role === 'admin'
-      ? { e: 'admin@currencylens.com', p: 'admin123' }
-      : { e: 'trader@currencylens.com', p: 'trader123' };
+      ? { e: 'admin@currencyanalysis.com', p: 'admin123' }
+      : { e: 'trader@currencyanalysis.com', p: 'trader123' };
     setEmail(creds.e);
     setPassword(creds.p);
     const ok = await login(creds.e, creds.p);
@@ -52,7 +52,7 @@ export const LoginPage: React.FC = () => {
             className="px-3 py-2 rounded-lg bg-[#111d33] hover:bg-[#1a2c4e] border border-[#1c2a47] text-xs font-mono text-cyan-300 font-semibold transition-all text-left"
           >
             <div>Trader Desk</div>
-            <div className="text-[10px] text-slate-500 font-normal">trader@currencylens</div>
+            <div className="text-[10px] text-slate-500 font-normal">trader@currencyanalysis</div>
           </button>
           <button
             type="button"
@@ -60,7 +60,7 @@ export const LoginPage: React.FC = () => {
             className="px-3 py-2 rounded-lg bg-[#111d33] hover:bg-[#1a2c4e] border border-[#1c2a47] text-xs font-mono text-amber-300 font-semibold transition-all text-left"
           >
             <div>Admin Terminal</div>
-            <div className="text-[10px] text-slate-500 font-normal">admin@currencylens</div>
+            <div className="text-[10px] text-slate-500 font-normal">admin@currencyanalysis</div>
           </button>
         </div>
       </div>

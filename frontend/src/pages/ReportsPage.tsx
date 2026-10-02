@@ -42,7 +42,7 @@ export const ReportsPage: React.FC = () => {
     }
   };
 
-  const handleExportLivePDF = (reportTitle: string = 'CurrencyLens Daily FX Report') => {
+  const handleExportLivePDF = (reportTitle: string = 'Currency Analysis Daily FX Report') => {
     const doc = new jsPDF();
 
     // Dark sleek header
@@ -52,7 +52,7 @@ export const ReportsPage: React.FC = () => {
     doc.setTextColor(6, 182, 212);
     doc.setFontSize(20);
     doc.setFont('helvetica', 'bold');
-    doc.text('CurrencyLens', 14, 20);
+    doc.text('Currency Analysis', 14, 20);
 
     doc.setTextColor(241, 245, 249);
     doc.setFontSize(10);

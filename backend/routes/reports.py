@@ -20,5 +20,5 @@ async def export_csv():
     return Response(
         content=csv_content,
         media_type="text/csv",
-        headers={"Content-Disposition": "attachment; filename=currencylens_market_rates.csv"}
+        headers={"Content-Disposition": "attachment; filename=currency_analysis_market_rates.csv"}
     )

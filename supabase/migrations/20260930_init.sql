@@ -1,5 +1,5 @@
 -- ====================================================================
--- CurrencyLens Database Schema (Supabase PostgreSQL Compatible)
+-- Currency Analysis Database Schema (Supabase PostgreSQL Compatible)
 -- Migration: 20260930_init.sql
 -- ====================================================================
 

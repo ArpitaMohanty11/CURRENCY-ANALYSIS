@@ -31,7 +31,7 @@ export const apiClient = axios.create({
 
 // Interceptor for JWT Bearer token
 apiClient.interceptors.request.use((config) => {
-  const token = localStorage.getItem('currencylens_token') || 'demo-trader-token';
+  const token = localStorage.getItem('currency_analysis_token') || 'demo-trader-token';
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
   }
@@ -44,7 +44,7 @@ apiClient.interceptors.response.use(
   (error) => {
     if (error.response?.status === 401) {
       // Clear token if invalid, or allow demo fallback
-      if (localStorage.getItem('currencylens_token')) {
+      if (localStorage.getItem('currency_analysis_token')) {
         console.warn('Session expired or unauthorized.');
       }
     }

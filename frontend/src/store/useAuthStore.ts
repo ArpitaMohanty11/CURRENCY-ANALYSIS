@@ -18,7 +18,7 @@ interface AuthState {
 export const useAuthStore = create<AuthState>((set, get) => ({
   user: {
     id: '00000000-0000-0000-0000-000000000002',
-    email: 'trader@currencylens.com',
+    email: 'trader@currencyanalysis.com',
     full_name: 'Dharmendra Trader',
     role: 'trader',
     is_active: true,
@@ -31,7 +31,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
       notification_in_app: true,
     },
   },
-  token: localStorage.getItem('currencylens_token') || 'demo-trader-token',
+  token: localStorage.getItem('currency_analysis_token') || 'demo-trader-token',
   isAuthenticated: true,
   isLoading: false,
   error: null,
@@ -40,7 +40,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
     set({ isLoading: true, error: null });
     try {
       const res = await api.auth.login(email, password);
-      localStorage.setItem('currencylens_token', res.access_token);
+      localStorage.setItem('currency_analysis_token', res.access_token);
       set({ user: res.user, token: res.access_token, isAuthenticated: true, isLoading: false });
       return true;
     } catch (err: any) {
@@ -49,7 +49,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
         set({
           user: {
             id: '00000000-0000-0000-0000-000000000001',
-            email: 'admin@currencylens.com',
+            email: 'admin@currencyanalysis.com',
             full_name: 'Alexander Vance (Chief FX Strategist)',
             role: 'admin',
             is_active: true,
@@ -59,7 +59,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
           isAuthenticated: true,
           isLoading: false,
         });
-        localStorage.setItem('currencylens_token', 'demo-admin-token');
+        localStorage.setItem('currency_analysis_token', 'demo-admin-token');
         return true;
       }
       set({
@@ -74,7 +74,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
     set({ isLoading: true, error: null });
     try {
       const res = await api.auth.register(payload);
-      localStorage.setItem('currencylens_token', res.access_token);
+      localStorage.setItem('currency_analysis_token', res.access_token);
       set({ user: res.user, token: res.access_token, isAuthenticated: true, isLoading: false });
       return true;
     } catch (err: any) {
@@ -87,7 +87,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
   },
 
   logout: () => {
-    localStorage.removeItem('currencylens_token');
+    localStorage.removeItem('currency_analysis_token');
     set({ user: null, token: null, isAuthenticated: false });
   },
 

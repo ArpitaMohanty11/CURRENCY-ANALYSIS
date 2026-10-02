@@ -97,7 +97,7 @@ export const LandingPage: React.FC = () => {
             to="/dashboard"
             className="flex items-center gap-2 px-6 py-3.5 rounded-xl font-mono text-sm font-bold bg-linear-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-black shadow-xl shadow-cyan-500/25 transition-all transform hover:-translate-y-0.5"
           >
-            <span>EXPLORE PRO TERMINAL</span>
+            <span>EXPLORE TERMINAL</span>
             <ArrowRight className="w-4 h-4" />
           </Link>
           <Link
@@ -243,7 +243,7 @@ export const LandingPage: React.FC = () => {
       {/* Footer */}
       <footer className="border-t border-[#1c2a47] py-12 px-6 lg:px-12 bg-[#070e1c] text-xs font-mono text-slate-500 flex flex-col sm:flex-row items-center justify-between gap-4">
         <div>
-          © 2026 CurrencyLens Institutional FX. All rights reserved.
+          © 2026 Currency Analysis Institutional FX. All rights reserved.
         </div>
         <div className="flex items-center gap-6 text-slate-400">
           <Link to="/login" className="hover:text-cyan-400">Terminal Access</Link>

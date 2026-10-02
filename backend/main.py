@@ -49,7 +49,7 @@ app.include_router(admin.router, prefix=settings.API_V1_STR)
 @app.get("/")
 async def root():
     return {
-        "service": "CurrencyLens Institutional FX Intelligence API",
+        "service": "Currency Analysis Institutional FX Intelligence API",
         "version": settings.VERSION,
         "status": "ONLINE",
         "documentation": "/docs"

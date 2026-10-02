@@ -1,0 +1,9 @@
+{
+  "name": "currency-analysis-backend",
+  "version": "1.0.0",
+  "description": "Currency Analysis FX Intelligence Backend Runner",
+  "scripts": {
+    "dev": "python -m uvicorn backend.main:app --reload --port 8000 --app-dir ..",
+    "start": "python -m uvicorn backend.main:app --port 8000 --app-dir .."
+  }
+}

@@ -145,7 +145,7 @@ class DatabaseManager:
 
         self.users[admin_id] = {
             "id": admin_id,
-            "email": "admin@currencylens.com",
+            "email": "admin@currencyanalysis.com",
             # Hashed representation of "admin123"
             "hashed_password": "$2b$12$EixZaYVK1fsbw1ZfbX3OXePaWxn96p36WQoeG6Lruj3vjPGga31lW",
             "full_name": "Alexander Vance (Chief FX Strategist)",
@@ -163,7 +163,7 @@ class DatabaseManager:
 
         self.users[trader_id] = {
             "id": trader_id,
-            "email": "trader@currencylens.com",
+            "email": "trader@currencyanalysis.com",
             # Hashed representation of "trader123"
             "hashed_password": "$2b$12$EixZaYVK1fsbw1ZfbX3OXePaWxn96p36WQoeG6Lruj3vjPGga31lW",
             "full_name": "Dharmendra Trader",

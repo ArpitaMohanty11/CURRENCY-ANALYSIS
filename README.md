@@ -1,6 +1,6 @@
-# CurrencyLens — Institutional FX Intelligence Terminal
+# Currency Analysis — Institutional FX Intelligence Terminal
 
-CurrencyLens is a high-density, production-ready full-stack foreign exchange analytics platform inspired by **TradingView**, **Bloomberg Terminal**, and **Stripe Dashboard**. It provides institutional foreign exchange liquidity feeds, real-time rate tracking, interactive multi-timeframe charts, currency relative strength matrices, price trigger monitoring, automated report compilation (PDF/CSV), and AI macro insights.
+Currency Analysis is a high-density, production-ready full-stack foreign exchange analytics platform inspired by **TradingView**, **Bloomberg Terminal**, and **Stripe Dashboard**. It provides institutional foreign exchange liquidity feeds, real-time rate tracking, interactive multi-timeframe charts, currency relative strength matrices, price trigger monitoring, automated report compilation (PDF/CSV), and AI macro insights.
 
 ---
 
@@ -129,8 +129,8 @@ For testing and demonstration, use the quick login buttons on [`/login`](http://
 
 | Role | Email | Password | Access Level |
 |---|---|---|---|
-| **FX Trader** | `trader@currencylens.com` | `trader123` | Full Terminal Access (Dashboard, Converter, Analytics, Watchlists, Alerts, Reports, Settings) |
-| **Institutional Admin** | `admin@currencylens.com` | `admin123` | Full Terminal + Supervisor Cluster Dashboard (`/admin`) |
+| **FX Trader** | `trader@currencyanalysis.com` | `trader123` | Full Terminal Access (Dashboard, Converter, Analytics, Watchlists, Alerts, Reports, Settings) |
+| **Institutional Admin** | `admin@currencyanalysis.com` | `admin123` | Full Terminal + Supervisor Cluster Dashboard (`/admin`) |
 
 ---
 
@@ -172,5 +172,5 @@ npm run dev
 ## 🧪 Testing & Verification
 
 - **Production Frontend Bundle**: Run `npm run build` inside `frontend/` (Verified: `dist/` bundle created with zero errors).
-- **Backend API Import**: Run `python -c "import backend.main as m; print(m.app.title)"` (Verified: `CurrencyLens Institutional FX API`).
+- **Backend API Import**: Run `python -c "import backend.main as m; print(m.app.title)"` (Verified: `Currency Analysis Institutional FX API`).
 - **Database Schema**: Execute [`supabase/migrations/20260930_init.sql`](file:///d:/Data/dharmendra/currency_analysis/supabase/migrations/20260930_init.sql) in your Supabase SQL Editor.
