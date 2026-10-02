@@ -4,7 +4,7 @@ from datetime import datetime, timezone
 from backend.schemas.admin import SystemHealthResponse, AuditLogResponse, UserManagementItem, SchedulerJobStatus
 from backend.services.admin_service import admin_service
 from backend.middleware.auth_middleware import get_current_admin
-from backend.jobs.scheduler import scheduler, sync_exchange_rates_job
+from backend.jobs.scheduler import scheduler, sync_live_rates_job
 
 router = APIRouter(prefix="/admin", tags=["Admin Terminal"])
 
@@ -35,5 +35,5 @@ async def scheduler_jobs(admin: Dict[str, Any] = Depends(get_current_admin)):
 
 @router.post("/jobs/sync/trigger")
 async def trigger_sync(admin: Dict[str, Any] = Depends(get_current_admin)):
-    await sync_exchange_rates_job()
+    await sync_live_rates_job()
     return {"status": "SUCCESS", "message": "Manual exchange rate sync executed immediately."}
