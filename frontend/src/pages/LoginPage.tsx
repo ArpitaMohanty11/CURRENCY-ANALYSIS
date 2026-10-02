@@ -22,7 +22,7 @@ export const LoginPage: React.FC = () => {
     const creds = role === 'admin'
       ? { e: 'admin@currencyanalysis.com', p: 'admin123' }
       : { e: 'trader@currencyanalysis.com', p: 'trader123' };
-    setEmail(creds.e);
+    setEmail(creds.e); 
     setPassword(creds.p);
     const ok = await login(creds.e, creds.p);
     if (ok) {
