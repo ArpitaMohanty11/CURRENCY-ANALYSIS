@@ -7,12 +7,19 @@ from backend.repositories.admin_repo import admin_repo
 
 scheduler = AsyncIOScheduler()
 
-async def sync_exchange_rates_job():
-    """Background job: Live FX rate tick simulation and spread adjustment"""
+async def sync_live_rates_job():
+    """Background job: Fetch real live FX rates from open.er-api.com every 60s"""
     try:
-        currency_repo.tick_exchange_rates()
+        success = currency_repo.sync_live_rates()
+        if not success:
+            # If live fetch fails, apply micro-tick to keep UI responsive
+            currency_repo.tick_exchange_rates()
     except Exception as e:
-        print(f"[Job Error] sync_exchange_rates: {e}")
+        print(f"[Job Error] sync_live_rates: {e}")
+        try:
+            currency_repo.tick_exchange_rates()
+        except Exception:
+            pass
 
 async def monitor_alerts_job():
     """Background job: Price alert monitoring against live market rates"""
@@ -34,11 +41,12 @@ async def daily_market_summary_job():
 
 def start_scheduler():
     if not scheduler.running:
+        # Live FX rate sync every 60 seconds (open.er-api.com free tier is generous)
         scheduler.add_job(
-            sync_exchange_rates_job,
-            trigger=IntervalTrigger(seconds=15),
-            id="sync_exchange_rates",
-            name="FX Live Exchange Rate Sync",
+            sync_live_rates_job,
+            trigger=IntervalTrigger(seconds=60),
+            id="sync_live_rates",
+            name="Live FX Rate Sync (open.er-api.com)",
             replace_existing=True
         )
         scheduler.add_job(
@@ -56,7 +64,7 @@ def start_scheduler():
             replace_existing=True
         )
         scheduler.start()
-        print("APScheduler background jobs initialized and running.")
+        print("APScheduler background jobs initialized — live FX sync active every 60s.")
 
 def stop_scheduler():
     if scheduler.running:
