@@ -26,6 +26,9 @@ class Settings(BaseSettings):
     RATE_SYNC_INTERVAL: int = 60
     ALERT_CHECK_INTERVAL: int = 30
 
+    # Self-ping URL to prevent Render free tier sleep (set to your Render backend URL)
+    SELF_PING_URL: Optional[str] = os.getenv("SELF_PING_URL", None)
+
     # CORS — allow localhost dev + any Vercel deployment + custom domains
     BACKEND_CORS_ORIGINS: List[str] = [
         "http://localhost:5173",
