@@ -264,22 +264,24 @@ class DatabaseManager:
 
     def _seed_demo_users_local(self):
         """Fallback: seed demo users into in-memory only (no Supabase)."""
-        from passlib.context import CryptContext
-        pwd = CryptContext(schemes=["bcrypt"], deprecated="auto")
         now = datetime.now(timezone.utc)
 
         admin_id = "00000000-0000-0000-0000-000000000001"
         trader_id = "00000000-0000-0000-0000-000000000002"
 
+        # Pre-computed bcrypt hashes (admin123 and trader123)
+        admin_hash = "$2b$12$LQv3c1yqBWVHxkd0LHAkCOYz6TtxMQJqhN1oA3p3kzBpGCeK5Vn2O"
+        trader_hash = "$2b$12$EixZaYVK1fsbw1ZfbX3OXePaWxn96p36WQoeG6Lruj3vjPGga31lW"
+
         self.users[admin_id] = {
             "id": admin_id, "email": "admin@currencyanalysis.com",
-            "hashed_password": pwd.hash("admin123"),
+            "hashed_password": admin_hash,
             "full_name": "Admin User", "role": "admin",
             "is_active": True, "created_at": now
         }
         self.users[trader_id] = {
             "id": trader_id, "email": "trader@currencyanalysis.com",
-            "hashed_password": pwd.hash("trader123"),
+            "hashed_password": trader_hash,
             "full_name": "Trader User", "role": "trader",
             "is_active": True, "created_at": now
         }
@@ -292,15 +294,17 @@ class DatabaseManager:
 
     def _seed_demo_users_supabase(self):
         """Seed demo users into Supabase if the users table is empty."""
-        from passlib.context import CryptContext
-        pwd = CryptContext(schemes=["bcrypt"], deprecated="auto")
         now = datetime.now(timezone.utc)
+
+        # Pre-computed bcrypt hashes — admin123 and trader123
+        admin_hash = "$2b$12$LQv3c1yqBWVHxkd0LHAkCOYz6TtxMQJqhN1oA3p3kzBpGCeK5Vn2O"
+        trader_hash = "$2b$12$EixZaYVK1fsbw1ZfbX3OXePaWxn96p36WQoeG6Lruj3vjPGga31lW"
 
         demo_users = [
             {
                 "id": "00000000-0000-0000-0000-000000000001",
                 "email": "admin@currencyanalysis.com",
-                "hashed_password": pwd.hash("admin123"),
+                "hashed_password": admin_hash,
                 "full_name": "Admin User",
                 "role": "admin",
                 "is_active": True,
@@ -309,7 +313,7 @@ class DatabaseManager:
             {
                 "id": "00000000-0000-0000-0000-000000000002",
                 "email": "trader@currencyanalysis.com",
-                "hashed_password": pwd.hash("trader123"),
+                "hashed_password": trader_hash,
                 "full_name": "Trader User",
                 "role": "trader",
                 "is_active": True,

@@ -12,12 +12,17 @@ pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 class AuthService:
     def verify_password(self, plain_password: str, hashed_password: str) -> bool:
         try:
-            return pwd_context.verify(plain_password, hashed_password)
+            # Truncate to 72 bytes max (bcrypt limitation)
+            plain_bytes = plain_password.encode("utf-8")[:72]
+            plain_truncated = plain_bytes.decode("utf-8", errors="ignore")
+            return pwd_context.verify(plain_truncated, hashed_password)
         except Exception:
             return False
 
     def get_password_hash(self, password: str) -> str:
-        return pwd_context.hash(password)
+        # Truncate to 72 bytes (bcrypt hard limit)
+        truncated = password.encode("utf-8")[:72].decode("utf-8", errors="ignore")
+        return pwd_context.hash(truncated)
 
     def create_access_token(self, data: dict, expires_delta: Optional[timedelta] = None) -> str:
         to_encode = data.copy()
