@@ -45,7 +45,7 @@ graph TD
 - **Primary**: Supabase PostgreSQL with Row-Level Security (RLS) policies
 - **Resilient Fallback**: Zero-setup, live-populated in-memory repository layer guaranteeing immediate execution even before external cloud credentials are supplied.
 
----
+
 
 ## 💻 12 Frontend Pages
 
@@ -102,7 +102,7 @@ graph TD
     - User accounts inspector with role tags
     - Security audit trail log
 
----
+
 
 ## 🗄️ Database Tables (12 Tables)
 
@@ -121,7 +121,7 @@ The complete SQL schema with Row-Level Security (RLS) is located at [`supabase/m
 11. `audit_logs` — System security and user action trail
 12. `notification_logs` — In-app and email notification records
 
----
+
 
 ## 🔑 Pre-Configured Demo Credentials
 
@@ -167,7 +167,7 @@ npm run dev
 
 * Access the application in your browser at: `http://localhost:5173`
 
----
+
 
 ## 🧪 Testing & Verification
 
