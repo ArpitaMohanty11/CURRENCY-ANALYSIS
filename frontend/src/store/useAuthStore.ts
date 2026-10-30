@@ -10,6 +10,7 @@ interface AuthState {
   error: string | null;
   login: (email: string, password: string) => Promise<boolean>;
   register: (payload: { email: string; password: string; full_name: string; role?: string }) => Promise<boolean>;
+  loginWithGoogle: (supabaseAccessToken: string) => Promise<boolean>;
   logout: () => void;
   fetchMe: () => Promise<void>;
   updatePreferences: (prefs: Partial<UserPreferences>) => Promise<void>;
@@ -59,6 +60,26 @@ export const useAuthStore = create<AuthState>((set, get) => ({
       return true;
     } catch (err: any) {
       const msg = err.response?.data?.detail || 'Registration failed. Please try again.';
+      set({ error: msg, isLoading: false });
+      return false;
+    }
+  },
+
+  loginWithGoogle: async (supabaseAccessToken: string) => {
+    set({ isLoading: true, error: null });
+    try {
+      const res = await api.auth.googleLogin(supabaseAccessToken);
+      localStorage.setItem('currency_analysis_token', res.access_token);
+      set({
+        user: res.user,
+        token: res.access_token,
+        isAuthenticated: true,
+        isLoading: false,
+        error: null,
+      });
+      return true;
+    } catch (err: any) {
+      const msg = err.response?.data?.detail || 'Google sign-in failed. Please try again.';
       set({ error: msg, isLoading: false });
       return false;
     }

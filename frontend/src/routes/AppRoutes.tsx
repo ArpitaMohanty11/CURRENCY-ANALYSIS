@@ -17,12 +17,16 @@ import { AlertsPage } from '../pages/AlertsPage';
 import { ReportsPage } from '../pages/ReportsPage';
 import { SettingsPage } from '../pages/SettingsPage';
 import { AdminPage } from '../pages/AdminPage';
+import { AuthCallbackPage } from '../pages/AuthCallbackPage';
 
 export const AppRoutes: React.FC = () => {
   return (
     <Routes>
       {/* 1. Public Landing Page */}
       <Route path="/" element={<LandingPage />} />
+
+      {/* OAuth callback — must be outside AuthLayout to avoid redirect loops */}
+      <Route path="/auth/callback" element={<AuthCallbackPage />} />
 
       {/* 2 & 3. Auth Routes */}
       <Route element={<AuthLayout />}>

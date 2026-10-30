@@ -71,6 +71,10 @@ export const api = {
       const res = await apiClient.put('/auth/preferences', preferences);
       return res.data;
     },
+    googleLogin: async (accessToken: string): Promise<{ access_token: string; user: User }> => {
+      const res = await apiClient.post('/auth/google', { access_token: accessToken });
+      return res.data;
+    },
   },
 
   // Currencies & Rates

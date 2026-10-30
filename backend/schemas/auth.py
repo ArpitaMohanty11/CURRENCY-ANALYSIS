@@ -45,4 +45,7 @@ class UserResponse(BaseModel):
     created_at: datetime
     preferences: Optional[UserPreferencesResponse] = None
 
+class GoogleAuthRequest(BaseModel):
+    access_token: str
+
 Token.model_rebuild()
