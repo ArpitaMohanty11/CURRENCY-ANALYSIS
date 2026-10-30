@@ -15,7 +15,7 @@ graph TD
     Services --> Repositories["Repositories Layer (Clean Database Interface)"]
     Repositories --> Database[("Supabase PostgreSQL / Resilient Store")]
     APScheduler["APScheduler Background Daemons"] -->|"Tick Sync (15s)"| Repositories
-    APScheduler -->|Alert Monitor (30s)| Services
+    APScheduler -->|"Alert Monitor (30s)"| Services
 ```
 
 ---
