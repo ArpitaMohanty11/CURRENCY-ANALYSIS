@@ -1,28 +1,26 @@
 from datetime import datetime, timedelta, timezone
 from typing import Optional, Dict, Any
 from jose import jwt, JWTError
-from passlib.context import CryptContext
+import bcrypt
 from backend.config.settings import settings
 from backend.repositories.user_repo import user_repo
 from backend.schemas.auth import UserRegister, UserLogin
-
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 
 class AuthService:
     def verify_password(self, plain_password: str, hashed_password: str) -> bool:
         try:
-            # Truncate to 72 bytes max (bcrypt limitation)
+            # bcrypt operates on bytes and only considers the first 72 bytes.
             plain_bytes = plain_password.encode("utf-8")[:72]
-            plain_truncated = plain_bytes.decode("utf-8", errors="ignore")
-            return pwd_context.verify(plain_truncated, hashed_password)
+            hashed_bytes = hashed_password.encode("utf-8") if isinstance(hashed_password, str) else hashed_password
+            return bcrypt.checkpw(plain_bytes, hashed_bytes)
         except Exception:
             return False
 
     def get_password_hash(self, password: str) -> str:
-        # Truncate to 72 bytes (bcrypt hard limit)
-        truncated = password.encode("utf-8")[:72].decode("utf-8", errors="ignore")
-        return pwd_context.hash(truncated)
+        # bcrypt has a hard 72-byte limit on the input password.
+        plain_bytes = password.encode("utf-8")[:72]
+        return bcrypt.hashpw(plain_bytes, bcrypt.gensalt(rounds=12)).decode("utf-8")
 
     def create_access_token(self, data: dict, expires_delta: Optional[timedelta] = None) -> str:
         to_encode = data.copy()

@@ -186,10 +186,17 @@ class DatabaseManager:
         print(f"[DB] Loaded: {len(self.users)} users, {len(self.watchlists)} watchlists, "
               f"{len(self.alerts)} alerts, {len(self.reports)} reports.")
 
-        # Seed demo users into Supabase if none exist
+        # Seed demo users if none were loaded. This covers two cases:
+        #   1. Supabase reachable but empty  -> seed into Supabase + cache
+        #   2. Supabase configured but DOWN  -> seed into local cache so logins still work
         if not self.users:
-            print("[DB] No users found in Supabase — seeding demo users.")
+            print("[DB] No users loaded — seeding demo users (local cache always, Supabase if reachable).")
             self._seed_demo_users_supabase()
+            # Guarantee the in-memory cache has the demo users even if every
+            # Supabase upsert failed (e.g. network/DNS error).
+            if not self.users:
+                print("[DB] Supabase seeding did not populate cache — falling back to local seed.")
+                self._seed_demo_users_local()
 
     # ── Currency / rate seeding (always local — updated by live sync) ────────
 
@@ -269,9 +276,9 @@ class DatabaseManager:
         admin_id = "00000000-0000-0000-0000-000000000001"
         trader_id = "00000000-0000-0000-0000-000000000002"
 
-        # Pre-computed bcrypt hashes (admin123 and trader123)
-        admin_hash = "$2b$12$LQv3c1yqBWVHxkd0LHAkCOYz6TtxMQJqhN1oA3p3kzBpGCeK5Vn2O"
-        trader_hash = "$2b$12$EixZaYVK1fsbw1ZfbX3OXePaWxn96p36WQoeG6Lruj3vjPGga31lW"
+        # Pre-computed bcrypt hashes (admin123 and trader123) — verified with bcrypt.checkpw
+        admin_hash = "$2b$12$iSN1aZtaLpROkkjn7wdq9.gJDHd/rGKrf3a4j9/lLFtKVjVcYWIKu"
+        trader_hash = "$2b$12$D1Wfj.LwvLEgGkH2zSbr8eEfnoeWsQdxV8cxRJULcGwF7cwFzyUfi"
 
         self.users[admin_id] = {
             "id": admin_id, "email": "admin@currencyanalysis.com",
@@ -296,9 +303,9 @@ class DatabaseManager:
         """Seed demo users into Supabase if the users table is empty."""
         now = datetime.now(timezone.utc)
 
-        # Pre-computed bcrypt hashes — admin123 and trader123
-        admin_hash = "$2b$12$LQv3c1yqBWVHxkd0LHAkCOYz6TtxMQJqhN1oA3p3kzBpGCeK5Vn2O"
-        trader_hash = "$2b$12$EixZaYVK1fsbw1ZfbX3OXePaWxn96p36WQoeG6Lruj3vjPGga31lW"
+        # Pre-computed bcrypt hashes — admin123 and trader123 — verified with bcrypt.checkpw
+        admin_hash = "$2b$12$iSN1aZtaLpROkkjn7wdq9.gJDHd/rGKrf3a4j9/lLFtKVjVcYWIKu"
+        trader_hash = "$2b$12$D1Wfj.LwvLEgGkH2zSbr8eEfnoeWsQdxV8cxRJULcGwF7cwFzyUfi"
 
         demo_users = [
             {
@@ -322,16 +329,17 @@ class DatabaseManager:
         ]
 
         for u in demo_users:
-            result = self.sb_upsert("users", u)
-            if result:
-                self.users[u["id"]] = u
-                prefs = {
-                    "user_id": u["id"], "base_currency": "USD", "theme": "dark",
-                    "refresh_interval_seconds": 15,
-                    "notification_email": True, "notification_in_app": True
-                }
-                self.sb_upsert("user_preferences", prefs)
-                self.user_preferences[u["id"]] = prefs
+            # Attempt to persist to Supabase, but ALWAYS populate the in-memory
+            # cache so demo logins work even when Supabase is unreachable.
+            self.sb_upsert("users", u)
+            self.users[u["id"]] = u
+            prefs = {
+                "user_id": u["id"], "base_currency": "USD", "theme": "dark",
+                "refresh_interval_seconds": 15,
+                "notification_email": True, "notification_in_app": True
+            }
+            self.sb_upsert("user_preferences", prefs)
+            self.user_preferences[u["id"]] = prefs
 
         # Default watchlist for trader
         trader_id = "00000000-0000-0000-0000-000000000002"
